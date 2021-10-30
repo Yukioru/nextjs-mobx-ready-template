@@ -1,7 +1,19 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import { StoreProvider } from '../components/StoreProvider';
+import RootStore from '../stores/Root.store';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <StoreProvider
+      store={{
+        name: 'rootStore',
+        Store: RootStore,
+      }}
+      {...pageProps}
+    >
+      <Component {...pageProps} />
+    </StoreProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

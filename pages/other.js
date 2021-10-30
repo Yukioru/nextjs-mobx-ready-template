@@ -3,15 +3,15 @@ import Link from 'next/link';
 import { StoreProvider, useStore } from '../components/StoreProvider';
 import EntityStore from '../stores/Entity.store';
 
-function InnerHome() {
+function InnerOther() {
   const stores = useStore();
-  console.log('InnerHome.store', stores);
+  console.log('InnerOther.store', stores);
   return <div>{stores.entityStore.title}</div>;
 }
 
-function Home({ initialState }) {
+function Other({ initialState }) {
   const stores = useStore();
-  console.log('Home.store', stores, initialState);
+  console.log('Other.store', stores, initialState);
   return (
     <StoreProvider
       store={{
@@ -22,12 +22,12 @@ function Home({ initialState }) {
     >
       {stores.rootStore.user.name}
       <sup>{`@${stores.rootStore.user.username}`}</sup>
-      <InnerHome />
+      <InnerOther />
       <div>
         <Link href="/more">more</Link>
       </div>
       <div>
-        <Link href="/other">other</Link>
+        <Link href="/">home</Link>
       </div>
     </StoreProvider>
   );
@@ -38,15 +38,15 @@ export function getStaticProps() {
     props: {
       initialState: {
         user: {
-          name: 'User 1',
+          name: 'User 2',
         },
         entity: {
-          title: 'Семейка Аддамс',
-          year: 2019,
+          title: 'Борис Годунов (2021)',
+          year: 2021
         },
       },
     },
   };
 }
 
-export default Home;
+export default Other;
